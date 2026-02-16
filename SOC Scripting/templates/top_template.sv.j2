@@ -1,0 +1,19 @@
+// AUTO-GENERATED FILE
+
+module top;
+
+{% for net in nets %}
+logic{% if net.width > 1 %} [{{ net.width - 1 }}:0]{% endif %} {{ net.name }};
+{% endfor %}
+
+{% for ip in ips %}
+// Instance: {{ ip.instance }}
+{{ ip.module }} {{ ip.instance }} (
+{% for port in ip.ports %}
+    .{{ port.name }}({{ port.instance }}__{{ port.name }}){% if not loop.last %},{% endif %}
+{% endfor %}
+);
+
+{% endfor %}
+
+endmodule
