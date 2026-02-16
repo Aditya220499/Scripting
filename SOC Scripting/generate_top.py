@@ -2,9 +2,12 @@ import json
 import os
 from jinja2 import Environment, FileSystemLoader
 
-INPUT_FILE = "input/ip_description.json"
-TEMPLATE_DIR = "templates"
-OUTPUT_FILE = "output/top_generated.sv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+INPUT_FILE = os.path.join(BASE_DIR, "input", "ip_description.json")
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+OUTPUT_FILE = os.path.join(BASE_DIR, "output", "top_generated.sv")
+
 
 def load_metadata():
     with open(INPUT_FILE) as f:
