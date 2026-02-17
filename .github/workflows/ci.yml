@@ -25,7 +25,7 @@ jobs:
       run: python "SOC Scripting/generate_top.py" "SOC Scripting/scenarios/scenario_valid.json"
 
     - name: Ensure output file exists
-      run: test -f output/top_generated.sv
+      run: test -f "SOC Scripting/output/top_generated.sv"
 
     - name: Run error scenario (must fail)
       run: |
