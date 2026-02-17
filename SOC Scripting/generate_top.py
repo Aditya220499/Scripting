@@ -34,7 +34,7 @@ TOP_LEVEL_INPUTS = ["clk", "rst_n"]
 # Argument Handling
 # ---------------------------
 
-if len(sys.argv) < 2:
+if len(sys.argv) != 2:
     print("Usage: python generate_top.py <json_file>")
     sys.exit(1)
 
