@@ -162,8 +162,8 @@ def analyze_connectivity(ips):
             for e in entries:
                 connection_map[(e["instance"], signal)] = net_name
 
-    print(nets)
-    print(connection_map)
+    # print(nets)
+    # print(connection_map)
     return nets, connection_map
 
 
