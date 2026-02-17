@@ -1,0 +1,37 @@
+name: SoC Integration CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install jinja2
+
+    - name: Run valid scenario
+      run: python generate_top.py scenarios/scenario_valid.json
+
+    - name: Ensure output file exists
+      run: test -f output/top_generated.sv
+
+    - name: Run error scenario (must fail)
+      run: |
+        if python generate_top.py scenarios/scenario_error.json; then
+          echo "ERROR: scenario_error.json did not fail as expected"
+          exit 1
+        else
+          echo "Correctly detected multi-driver error"
+        fi
